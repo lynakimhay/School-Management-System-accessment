@@ -3,6 +3,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import classRoute from "./routes/classRoute.js";
 import dotenv from "dotenv";
+import studentsRoutes from "./routes/studentsRoutes.js";
 
 // Initialize dotenv to load environment variables
 dotenv.config();
@@ -25,15 +26,15 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Football CMS application." });
 });
-
-
-app.use("/api/class", classRoute);
-
 //connectDB
 connectDB();
+app.use ("/api/student",studentsRoutes);
+app.use("/api/class", classRoute);
+
+
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
